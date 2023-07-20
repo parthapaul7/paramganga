@@ -1,0 +1,29 @@
+Nodes used per partition:
+gpu: 32
+highmemor: 52
+large: 123
+medium: 56
+small: 229
+
+Average running time : 0-17:11:56
+
+Number of running nodes (R) per partition:
+gpu: 24
+highmemor: 33
+medium: 36
+small: 174
+Total: 267
+
+Average running time per node: 0-17:21:59
+
+Number of pending nodes (PD) per partition:
+gpu: 8
+highmemor: 19
+large: 123
+medium: 20
+small: 55
+Total: 225
+
+Count of R and PD states:
+R: 69
+PD: 33

@@ -1,0 +1,28 @@
+#!/bin/bash
+#aliases 
+alias q="squeue -u partha_pp.iitr"
+alias sb="sbatch"
+alias scr="cd /scratch/partha_pp.iitr"
+alias vaspkit="/home/clean/vaspkit/vaspkit/vaspkit.1.4.1/bin/vaspkit"
+alias fm="nautilus . > /dev/null 2>&1 &"
+alias code="code . > /dev/null 2>&1 &"
+alias vesta="VESTA $1"
+alias pych="pycharm.sh . > /dev/null 2>&1 &"
+alias sqq="/home/clean/job_analyser/analyse.sh"
+alias remove="remove_vasp.sh"
+alias vesta="/home/clean/vesta/VESTA-gtk3/VESTA"
+
+alias rm="echo 'please use trm for trash our \rm';false"
+alias trm="trash-put $1"
+ "alias set"
+
+scr
+neofetch
+
+
+#modules 
+source /home/apps/spack/share/spack/setup-env.sh
+
+ml gcc/11.1.0
+ml vmd
+ml vesta

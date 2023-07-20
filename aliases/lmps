@@ -1,0 +1,8 @@
+#!/bin/bash
+#path exports for lammps
+export LAMMPS_POTENTIALS=/home/apps/spack/opt/spack/linux-centos7-cascadelake/gcc-11.2.0/lammps-20210310-j66ewhelgzae4gucf4mgi3xjre6ixtdm/share/lammps/potentials
+echo "path exported"
+
+ml lammps_oneapi/20220623
+ml compiler/intel/2018_4
+ml gcc/11.1.0

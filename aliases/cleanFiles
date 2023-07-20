@@ -1,0 +1,3 @@
+#!/bin/bash
+rm job.* *.lammpstrj log.lammps
+mv p.out dump.p.out
