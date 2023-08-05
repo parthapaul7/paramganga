@@ -1,11 +1,17 @@
 #!/bin/bash
 
 # Display the warning message
-echo "WARNING: Running this command will perform a critical operation."
-echo "Are you sure you want to continue? (Type 'yes' to proceed)"
+# exit if no POTCAR or INCAR
+if [ ! -f POSCAR ] || [ ! -f INCAR ]; then
+  echo "POSCAR or INCAR file not found. Exiting."
+  exit 1
+fi
 
 # Read the user's input
+echo "WARNING: Running this command will remove a lot of files"
+echo "Are you sure you want to continue? (Type 'yes' to proceed)"
 read confirmation
+
 
 # Check if the user's input is 'yes' (case-insensitive)
 if [[ "$confirmation" =~ ^[Yy][Ee][Ss]$ ]]; then
