@@ -1,4 +1,8 @@
+import os
 def read_xdtcar(filename):
+    if os.path.getsize(filename) == 0:
+        print("zero file size")
+        return []
     with open(filename, "r") as file:
         lines = file.readlines()
 
@@ -27,21 +31,42 @@ def write_xdtcar(header_info, configurations, output_filename):
         file.write(header_info)
 
         for i, config in enumerate(configurations, start=1):
-            file.write(f"Direct configuration= {i}\n")
+            file.write("Direct configuration={:>6}\n".format(i))
             for coords in config:
-                file.write(f"   {coords[0]:.8f}  {coords[1]:.8f}  {coords[2]:.8f}\n")
+                if(coords[0] < 0): 
+                    if(coords[1] < 0):
+                        if(coords[2] < 0):
+                            file.write(f"  {coords[0]:.8f} {coords[1]:.8f} {coords[2]:.8f}\n")
+                        else:
+                            file.write(f"  {coords[0]:.8f} {coords[1]:.8f}  {coords[2]:.8f}\n")
+                    else:
+                        file.write(f"  {coords[0]:.8f}  {coords[1]:.8f}  {coords[2]:.8f}\n")
+                elif(coords[1] < 0):
+                    if(coords[2] < 0): 
+                        file.write(f"   {coords[0]:.8f} {coords[1]:.8f} {coords[2]:.8f}\n")
+                    else:
+                        file.write(f"   {coords[0]:.8f} {coords[1]:.8f}  {coords[2]:.8f}\n")
+                elif(coords[2] < 0):
+                    file.write(f"   {coords[0]:.8f}  {coords[1]:.8f} {coords[2]:.8f}\n")
+                else:
+                    file.write(f"   {coords[0]:.8f}  {coords[1]:.8f}  {coords[2]:.8f}\n")
+ 
+
 
 if __name__ == "__main__":
-    file1 = "XDATCAR1"  # Replace with the first "XDTCAR" file name
-    file2 = "XDATCAR2"  # Replace with the second "XDTCAR" file name
-    output_file = "concatenated_xdtcar.txt"  # Replace with the desired output file name
+    file2 = None
+    for i in range(1,16):
+        file1 = "XDATCAR"  # Replace with the first "XDTCAR" file name
+        file2 = "XDATCAR"+str(i)  # Replace with the second "XDTCAR" file name
+        output_file = "XDATCAR"  # Replace with the desired output file name
 
-    with open(file1, "r") as f1:
-        header_info = "".join(f1.readline() for _ in range(7))  # Save the first 7 lines as the header
 
-    configurations1 = read_xdtcar(file1)
-    configurations2 = read_xdtcar(file2)
+        configurations1 = read_xdtcar(file1)
+        configurations2 = read_xdtcar(file2)
 
-    concatenated_configurations = configurations1 + configurations2
+        concatenated_configurations = configurations1 + configurations2
 
-    write_xdtcar(header_info, concatenated_configurations, output_file)
+        with open(file2, "r") as f1:
+            header_info = "".join(f1.readline() for _ in range(7))  # Save the first 7 lines as the header
+
+        write_xdtcar(header_info, concatenated_configurations, output_file)
