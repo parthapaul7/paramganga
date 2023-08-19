@@ -11,10 +11,11 @@ alias pych="pycharm.sh . > /dev/null 2>&1 &"
 alias sqq="/home/clean/job_analyser/analyse.sh"
 alias remove="remove_vasp.sh"
 alias vesta="/home/clean/vesta/VESTA-gtk3/VESTA"
+alias jobinfo="scontrol show job $1"
 
 alias rm="echo 'please use trm for trash our \rm';false"
 alias trm="trash-put $1"
- "alias set"
+echo "alias set"
 
 scr
 neofetch
